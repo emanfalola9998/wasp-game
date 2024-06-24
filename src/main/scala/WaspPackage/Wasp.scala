@@ -8,7 +8,8 @@ case class Wasp(id: UUID, rank: String, lives: Int, deductable: Int) {
     case other: Wasp => id == other.id
     case _ => false
   }
-
+  
+  // If two objects are equal according to the equals method, they must have the same hash code.
   override def hashCode(): Int = {
     id.hashCode()
   }

@@ -1,6 +1,6 @@
 package WaspPackage
 
-import WaspPackage.Playground.{allWasps, queenWasps}
+import WaspPackage.Playground.allWasps
 
 import scala.io.StdIn
 import scala.util.Random
@@ -37,15 +37,15 @@ object Commander {
           val newWaspsList = currentWasps.waspList.filterNot(_.id == targetWasp.id)
           val newWasps = new Wasps(newWaspsList)
           println(s"${targetWasp.rank} remaining lives: ${targetWasp.lives}")
-          println
-          println(newWasps.waspList.foreach(wasp => s"Rank: ${wasp.rank} lives Remaining: ${wasp.lives}"))
+          println("-".repeat(100))
+          newWasps.waspList.foreach(wasp => println(s"Rank: ${wasp.rank} lives Remaining: ${wasp.lives}"))
           newWasps.waspList.find(wasp => wasp.rank == "queenWasp") match {
             case None =>
               println("The Queen is dead!")
               return false
             case _ =>
           }
-          println()
+          println("-".repeat(100))
           waspRecursion(newWasps)
         } else {
           // Update the currentWasps list with the modified targetWasp
